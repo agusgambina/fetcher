@@ -1,17 +1,22 @@
 package app.github.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public @Data
+public
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 class PositionDTO {
   private String id;
   private String type;
   private String url;
-  private LocalDateTime createdAt;
+  private String createdAt;
   private String company;
   private String companyUrl;
   private String location;
