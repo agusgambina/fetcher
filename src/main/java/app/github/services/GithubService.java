@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public interface GithubService {
 
   List<Position> getPositions(int count);
