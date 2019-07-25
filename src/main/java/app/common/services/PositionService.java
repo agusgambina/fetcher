@@ -10,4 +10,6 @@ import java.util.List;
 @Service
 public interface PositionService {
 
+  Iterable<Position> retrieveAndSaveGithubPositions(int count);
+
 }

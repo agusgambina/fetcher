@@ -24,6 +24,7 @@ class Position {
   @GeneratedValue
   @UpdateTimestamp
   private LocalDateTime lastModificationDate;
+  private String status = "open";
   private String externalId;
   private String name;
   private String currentCompany;

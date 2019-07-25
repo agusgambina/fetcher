@@ -15,6 +15,6 @@ public interface GithubClient {
 
   String constructUriPositions(Map<String, String> queryParams);
 
-  List<PositionDTO> getPositions(int quantity);
+  List<PositionDTO> getPositions(int count);
 
 }

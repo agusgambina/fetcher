@@ -24,20 +24,19 @@ public class GithubServiceImpl implements GithubService {
     List<Position> positionList;
     positionList = positionDTOList.stream()
       .filter(element -> element != null)
-      .map(element -> new Position(
-        1,
-        LocalDateTime.now(),
-        LocalDateTime.now(),
-        element.getId(),
-        element.getTitle(),
-        element.getCompany(),
-        element.getType(),
-        element.getLocation()
-      ))
+      .map(element -> mapToPosition(element))
       .collect(Collectors.toList());
     return positionList;
   }
 
-
+  private Position mapToPosition(PositionDTO positionDTO) {
+    Position position = new Position();
+    position.setExternalId(positionDTO.getId());
+    position.setName(positionDTO.getTitle());
+    position.setCurrentCompany(positionDTO.getCompany());
+    position.setType(positionDTO.getType());
+    position.setLocation(positionDTO.getLocation());
+    return position;
+  }
 
 }

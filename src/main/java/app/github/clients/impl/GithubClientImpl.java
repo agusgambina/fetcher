@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class GithubClientImpl implements GithubClient {
@@ -50,9 +51,9 @@ public class GithubClientImpl implements GithubClient {
 
 
   @Override
-  public List<PositionDTO> getPositions(int quantity) {
+  public List<PositionDTO> getPositions(int count) {
 
-    int pagesToRequest = (quantity + PAGINATING_ELEMENTS - 1) / PAGINATING_ELEMENTS;
+    int pagesToRequest = (count + PAGINATING_ELEMENTS - 1) / PAGINATING_ELEMENTS;
     Map<String, String> queryParams = new HashMap<String, String>();
     List<PositionDTO> positionDTOList = new ArrayList<PositionDTO>();
 
@@ -70,7 +71,6 @@ public class GithubClientImpl implements GithubClient {
         new ParameterizedTypeReference<List<PositionDTO>>(){});
       positionDTOList.addAll(response.getBody());
     }
-
-    return positionDTOList;
+    return positionDTOList.stream().limit(count).collect(Collectors.toList());
   }
 }
